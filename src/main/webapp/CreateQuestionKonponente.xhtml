@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+			<h:outputStylesheet library="css" name="calendar.css"></h:outputStylesheet>
+		</h:head>
+		<h:body>
+			<h:form id="nireForm">
+				<!-- beforeShowDate="highlightDays" -->
+				<p:calendar navigator="false" mode="inline">
+					<p:ajax event="dateSelect" listener="#{createQuestion.onDateSelect}"
+						update=":mezuak gertaerak"></p:ajax>
+				</p:calendar>
+				<p:dataTable id="gertaerak" value="#{createQuestion.gertaerak}"
+					var="item" selectionMode="single" border="1"
+					rowKey="#{item.eventNumber}">
+					<p:ajax event="rowSelect" listener="#{createQuestion.onEventSelect}"
+						update=":mezuak"></p:ajax>
+					<f:facet name="header">Gertaerak:</f:facet>
+					<p:column headerText="Event#">#{item.eventNumber}</p:column>
+					<p:column headerText="Event">#{item.description}</p:column>
+				</p:dataTable>
+			</h:form>
+			<h:form>
+				<table>
+					<tr>
+						<td>Question:</td>
+						<td><h:inputText id="question" 
+								value="#{createQuestion.question}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td>Min Bet:</td>
+						<td><h:inputText id="minBet" 
+								value="#{createQuestion.minBet}">
+							</h:inputText></td>
+					</tr>
+					<h:commandButton value="Onartu" action="#{createQuestion.createQuestion}" />
+				</table>
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

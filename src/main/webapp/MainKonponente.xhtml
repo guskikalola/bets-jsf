@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<h:form>
+				<table>
+					<tr>
+						<td>Select Option</td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Query Questions"
+								action="queryQuestion" /></td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Create Question"
+								action="createQuestion" /></td>
+					</tr>
+				</table>
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

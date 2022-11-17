@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+			<h:outputStylesheet library="css" name="calendar.css"></h:outputStylesheet>
+		</h:head>
+		<h:body>
+			<h:form id="nireForm">
+				<!--  -->
+				<p:calendar  navigator="false"
+					mode="inline">
+					<p:ajax event="dateSelect" listener="#{queryQuestion.onDateSelect}"
+						update=":mezuak gertaerak"></p:ajax>
+				</p:calendar>
+				<p:dataTable id="gertaerak" value="#{queryQuestion.gertaerak}"
+					var="item" selectionMode="single" border="1"
+					rowKey="#{item.eventNumber}">
+					<p:ajax event="rowSelect" listener="#{queryQuestion.onEventSelect}"
+						update=":mezuak :nireForm:galderak"></p:ajax>
+					<f:facet name="header">Gertaerak:</f:facet>
+					<p:column headerText="Event#">#{item.eventNumber}</p:column>
+					<p:column headerText="Event">#{item.description}</p:column>
+				</p:dataTable>
+				<p:dataTable id="galderak" value="#{queryQuestion.galderak}"
+					var="item" selectionMode="single" border="1"
+					rowKey="#{item.questionNumber}">
+					<p:ajax event="rowSelect"
+						listener="#{queryQuestion.onQuestionSelect}" update=":mezuak"></p:ajax>
+					<f:facet name="header">Galderak:</f:facet>
+					<p:column headerText="Question#">#{item.questionNumber}</p:column>
+					<p:column headerText="Question">#{item.question}</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>
