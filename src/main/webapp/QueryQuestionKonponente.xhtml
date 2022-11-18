@@ -7,14 +7,16 @@
 	<f:view>
 		<h:head>
 			<h:outputStylesheet library="css" name="calendar.css"></h:outputStylesheet>
+			<h:outputScript library="js" name="calendar.js"></h:outputScript>
 		</h:head>
 		<h:body>
 			<h:form id="nireForm">
 				<!--  -->
-				<p:calendar  navigator="false"
-					mode="inline">
+				<p:calendar
+					beforeShowDay="function(date){return highlightDays(#{queryQuestion.getEventsMonth()},date)}"
+					navigator="false" mode="inline">
 					<p:ajax event="dateSelect" listener="#{queryQuestion.onDateSelect}"
-						update=":mezuak gertaerak"></p:ajax>
+						update=":mezuak nireForm:gertaerak"></p:ajax>
 				</p:calendar>
 				<p:dataTable id="gertaerak" value="#{queryQuestion.gertaerak}"
 					var="item" selectionMode="single" border="1"
