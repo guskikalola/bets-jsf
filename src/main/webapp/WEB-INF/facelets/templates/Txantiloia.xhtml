@@ -5,10 +5,11 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html;" />
+<h:outputStylesheet library="css" name="main.css"></h:outputStylesheet>
 <title><ui:insert name="izenburua">Titulua definitzeke...</ui:insert></title>
 </h:head>
 <h:body>
-<h:panelGrid columns="1" align="center" border = "3" cellpadding = "10"
+<h:panelGrid class="gorputza" columns="1" align="center" border = "3" cellpadding = "10"
 cellspacing = "1">
 <h:panelGrid columns="1">
 <ui:insert name="gorputza"></ui:insert>

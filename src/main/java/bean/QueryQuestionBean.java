@@ -86,34 +86,7 @@ public class QueryQuestionBean {
 	}
 	
 	public String getEventsMonth() {
-		
-		List<Date> events = new ArrayList();
-		
-		List<Date> dates = new ArrayList();
-		
-		int year = Calendar.getInstance().YEAR;
-		int month = Calendar.getInstance().MONTH; 
-		int day = Calendar.getInstance().DAY_OF_WEEK;
-		for(int i = 0; i < 12; i++) {
-			if(month+1 > 12) {
-				year++;
-				month = 0;
-			}
-			dates.add(new Date(year+121,month,day));
-			month++;
-		}
-		
-		for(Date date : dates) {
-			List<Date> evs = facade.getEventsMonth(date);
-			events.addAll(evs);
-		}
-		
-		JSONArray datesJSON = new JSONArray();
-		for(Date d : events) {
-			datesJSON.put(d.getTime());
-		}
-		System.out.println(datesJSON.toString());
-		return datesJSON.toString();
+		return FacadeBean.getEventsMonth();
 	}
 	
 	public void onDateSelect(SelectEvent event) {

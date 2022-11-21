@@ -17,15 +17,15 @@ import exceptions.QuestionAlreadyExist;
 
 public class CreateQuestionBean {
 	private BLFacade facade;
-	
+
 	private List<Date> theDates;
 	private Event gertaera;
 	private List<Event> gertaerak;
 	private List<Question> galderak;
-	
+
 	private String question;
 	private Float minBet;
-	
+
 	public BLFacade getFacade() {
 		return facade;
 	}
@@ -74,74 +74,59 @@ public class CreateQuestionBean {
 		return galderak;
 	}
 
-	
 	public Event getGertaera() {
 		return gertaera;
 	}
-	
+
 	public void onEventSelect(SelectEvent event) {
-		Event ev = (Event)event.getObject();
+		Event ev = (Event) event.getObject();
 		gertaera = ev;
 		galderak = ev.getQuestions();
 	}
-	
-	public void onQuestionSelect(SelectEvent event) {
-	}
-	
+
 	public CreateQuestionBean() {
 
-		facade=FacadeBean.getBusinessLogic();
+		facade = FacadeBean.getBusinessLogic();
 		gertaera = null;
 		gertaerak = new ArrayList();
 	}
-	
+
 	public List<Date> getTheDates() {
 		return theDates;
 	}
-	
-	public String getEventsMonth(Date date) {
-		/**
-		 * 
- * 
- function highlightDays(date) {
-     var dates = #{queryQuestion.getEventsMonth(date)};
-     console.log(dates);
-     var cssclass = '';
-     for (var i = 0; i < dates.length; i++) {
-         if (date === new Date(dates[i])) {
-            cssclass = 'highlight-calendar';
-         }
-     }
-     return [true, cssclass];
- }
- 
- */
 
-		List<Date> events = facade.getEventsMonth(date);
-		String b = "[";
-		for(Date d : events) {
-			b+= d.toString() + ",";
-		}
-		return b;
+	public String getEventsMonth() {
+		return FacadeBean.getEventsMonth();
 	}
-	
+
 	public void createQuestion() {
 		try {
-			facade.createQuestion(gertaera, question, minBet);
+			if(question.length() == 0) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Galdera sartzea falta da."));	
+			} else {
+				facade.createQuestion(gertaera, question, minBet);
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Galdera sortuta."));				
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Ez dira eremu guztiak bete."));
 		} catch (EventFinished e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Gertaera dagoeneko bukatu da."));
 		} catch (QuestionAlreadyExist e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Galdera dagoeneko existitzen da: " + question));
 		}
 	}
-	
+
 	public void onDateSelect(SelectEvent event) {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Data aukeratua: "+event.getObject()));
-		
-		gertaerak =facade.getEvents((Date)event.getObject());
-		System.out.println("Gertaerak"+gertaerak);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data aukeratua: " + event.getObject()));
+
+		gertaerak = facade.getEvents((Date) event.getObject());
+		System.out.println("Gertaerak" + gertaerak);
 	}
 }
