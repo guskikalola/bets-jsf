@@ -16,7 +16,7 @@
 					beforeShowDay="function(date){return highlightDays(#{queryQuestion.getEventsMonth()},date)}"
 					navigator="false" mode="inline">
 					<p:ajax event="dateSelect" listener="#{queryQuestion.onDateSelect}"
-						update=":mezuak nireForm:gertaerak"></p:ajax>
+						update=":mezuak nireForm:gertaerak nireForm:galderak"></p:ajax>
 				</p:calendar>
 				<p:dataTable id="gertaerak" value="#{queryQuestion.gertaerak}"
 					var="item" selectionMode="single" border="1"

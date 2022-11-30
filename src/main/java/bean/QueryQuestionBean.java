@@ -93,6 +93,8 @@ public class QueryQuestionBean {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("Data aukeratua: "+event.getObject()));
 		
+		gertaerak = null;
+		galderak = null;
 		gertaerak =facade.getEvents((Date)event.getObject());
 		System.out.println("Gertaerak"+gertaerak);
 	}
