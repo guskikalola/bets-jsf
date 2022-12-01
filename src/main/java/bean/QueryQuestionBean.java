@@ -69,6 +69,7 @@ public class QueryQuestionBean {
 	public void onEventSelect(SelectEvent event) {
 		Event ev = (Event)event.getObject();
 		galderak = ev.getQuestions();
+		System.out.println("Galderak"+galderak);
 	}
 	
 	public void onQuestionSelect(SelectEvent event) {

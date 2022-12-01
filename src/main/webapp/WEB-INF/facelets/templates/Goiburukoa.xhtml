@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	<div class="d-flex flex-row justify-content-end">
+		<div class="#{login.saioaHasita() ? 'd-none' : ''}">
+			<h:link styleClass="btn btn-primary" value="Login"
+				outcome="Login" />
+			<h:link styleClass="btn btn-primary" value="Register"
+				outcome="Register" />
+		</div>
+	</div>
+</ui:composition>
+</html>
