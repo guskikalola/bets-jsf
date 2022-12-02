@@ -4,12 +4,13 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.List;
 
 import dataAccess.DataAccessInterface;
 import domain.Event;
+import domain.Pertsona;
 import domain.Question;
 import exceptions.EventFinished;
+import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -109,6 +110,31 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.open();
 		dbManager.initializeDB();
 		dbManager.close();
+	}
+
+	@Override
+	public Pertsona loginEgin(String username, String password) {
+		dbManager.open();
+		Pertsona p = null;
+		if(dbManager.loginZuzena(username, password)) {
+			dbManager.open(); // login zuzena commit egiten duenean sahia akabo	
+			p = dbManager.getPertsona(username);
+		}
+		dbManager.close();
+		return p;
+	}
+
+	@Override
+	public Pertsona registerEgin(String username, String password, Date birthDate) {
+		dbManager.open();
+		Pertsona p = null;
+		try {
+			p = dbManager.erregistratu(username, password,birthDate, "erabiltzailea");
+		} catch (PertsonaAlreadyExists e) {
+			System.out.println(e.getMessage());
+		}
+		dbManager.close();
+		return p;
 	}
 
 }

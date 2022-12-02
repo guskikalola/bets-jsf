@@ -4,12 +4,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
-	<div class="d-flex flex-row justify-content-end">
+	<div class="navbar d-flex flex-row #{login.saioaHasita() ? 'justify-content-between' : 'justify-content-end'}">
 		<div class="#{login.saioaHasita() ? 'd-none' : ''}">
-			<h:link styleClass="btn btn-primary" value="Login"
-				outcome="Login" />
+			<h:link styleClass="btn btn-primary" value="Login" outcome="Login" />
 			<h:link styleClass="btn btn-primary" value="Register"
 				outcome="Register" />
+		</div>
+		<div class="#{login.saioaHasita() ? '' : 'd-none'}">
+			<div class="p-2">
+				<h:form>
+					<h:commandButton styleClass="btn btn-danger" value="Logout"
+						action="#{login.logoutEgin}" />
+				</h:form>
+			</div>
+		</div>
+
+		<div class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-row">
+			<div class="p-2 m-auto">
+				<p>#{login.pertsona.izena}</p>
+			</div>
+			<p class="p-2 m-auto navbar-brand" href="#">
+				<h:graphicImage width="30" height="30"
+					value="https://pluspng.com/img-png/user-png-icon-download-icons-logos-emojis-users-2240.png" />
+			</p>
 		</div>
 	</div>
 </ui:composition>

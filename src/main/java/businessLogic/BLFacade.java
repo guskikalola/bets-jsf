@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import domain.Event;
+import domain.Pertsona;
 //import domain.Booking;
 import domain.Question;
 import exceptions.EventFinished;
@@ -50,5 +51,7 @@ public interface BLFacade  {
 	 */	
 	public void initializeBD();
 
+	public Pertsona loginEgin(String username, String password);
+	public Pertsona registerEgin(String username, String password, Date birthDate);
 	
 }

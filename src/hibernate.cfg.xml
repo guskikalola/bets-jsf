@@ -14,5 +14,8 @@
   <property name="hibernate.hbm2ddl.auto">create</property>
   <mapping class="domain.Event"/>
   <mapping class="domain.Question"/>
+  <mapping class="domain.Pertsona"/>
+  <mapping class="domain.Erabiltzailea"/>
+  <mapping class="domain.Admin"/>
  </session-factory>
 </hibernate-configuration>

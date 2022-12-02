@@ -17,4 +17,34 @@
   PATH="/QueryQuestion.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#CreateQuestion.xhtml"
   PATH="/CreateQuestion.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
+  SHAPE="88,128,50,57" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Login.xhtml:0" NAME="item"
+   PATH="/Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="true::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="true" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="false::#Login.xhtml" NAME="output1"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="false" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Register.xhtml" PATH="/Register.xhtml"
+  SHAPE="224,360,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Register.xhtml:0" NAME="item"
+   PATH="/Register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="true::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="true" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="false::#Register.xhtml" NAME="output1"
+    PATH="/Register.xhtml" TARGET="rules:#Register.xhtml" TITLE="false" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#WEB-INF#facelets#templates#Goiburukoa.xhtml"
+  PATH="/WEB-INF/facelets/templates/Goiburukoa.xhtml"
+  SHAPE="331,105,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#facelets#templates#Goiburukoa.xhtml:0" NAME="item"
+   PATH="/WEB-INF/facelets/templates/Goiburukoa.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

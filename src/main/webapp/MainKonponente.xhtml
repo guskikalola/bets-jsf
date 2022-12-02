@@ -21,6 +21,15 @@
 					<td><h:link styleClass="btn btn-primary"
 							value="Create Question" outcome="CreateQuestion" /></td>
 				</tr>
+				<tr>
+					<td><div
+							class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-column mt-2">
+							<h:link styleClass="btn btn-primary mb-1" value="My Account"
+								outcome="MyAccount" />
+								<h:link styleClass="btn btn-primary mb-1" value="Add money"
+								outcome="AddMoney" />
+						</div></td>
+				</tr>
 			</table>
 		</h:body>
 	</f:view>

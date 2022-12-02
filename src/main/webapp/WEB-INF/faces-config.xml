@@ -40,4 +40,37 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>true</from-outcome>
+   <to-view-id>/Main.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>false</from-outcome>
+   <to-view-id>/Login.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Register.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>true</from-outcome>
+   <to-view-id>/Main.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>false</from-outcome>
+   <to-view-id>/Register.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/WEB-INF/facelets/templates/Goiburukoa.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>logout</from-outcome>
+   <to-view-id>/Main.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
 </faces-config>

@@ -31,7 +31,10 @@ public class HibernateDataAccess implements DataAccessInterface {
 	@Override
 	public void open() {
 		System.out.println("Opening DataBase");
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		if(HibernateUtil.getSessionFactory().getCurrentSession().isOpen())
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+		else
+			session = HibernateUtil.getSessionFactory().openSession();
 	}
 
 	@Override
@@ -240,12 +243,13 @@ public class HibernateDataAccess implements DataAccessInterface {
 	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota)
 			throws PertsonaAlreadyExists {
 		Pertsona p = this.getPertsona(izena);
+		this.open(); // Commit session itxi egiten du
 		if (p != null)
 			throw new PertsonaAlreadyExists("Dagoeneko existitzen da erabiltzaile bat izen horrekin. Izena: " + izena);
 		if (!mota.equals("admin") && !mota.equals("erabiltzailea"))
 			throw new RuntimeException(mota + " pertsona mota ez da existitzen");
+		session.beginTransaction();
 		try {
-			session.beginTransaction();
 			if (mota.equals("admin")) {
 				p = new Admin(izena, pasahitza, jaiotzeData);
 			} else {

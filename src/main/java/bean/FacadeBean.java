@@ -53,5 +53,5 @@ public class FacadeBean {
 		System.out.println(datesJSON.toString());
 		return datesJSON.toString();
 	}
-
+	
 }
