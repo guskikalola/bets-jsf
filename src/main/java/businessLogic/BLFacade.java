@@ -52,6 +52,6 @@ public interface BLFacade  {
 	public void initializeBD();
 
 	public Pertsona loginEgin(String username, String password);
-	public Pertsona registerEgin(String username, String password, Date birthDate);
+	public Pertsona registerEgin(String username, String password, Date birthDate, String rola);
 	
 }

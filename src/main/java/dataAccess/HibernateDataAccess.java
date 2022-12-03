@@ -241,7 +241,7 @@ public class HibernateDataAccess implements DataAccessInterface {
 
 	@Override
 	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota)
-			throws PertsonaAlreadyExists {
+			throws PertsonaAlreadyExists, RuntimeException {
 		Pertsona p = this.getPertsona(izena);
 		this.open(); // Commit session itxi egiten du
 		if (p != null)

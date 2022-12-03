@@ -24,10 +24,21 @@
 				<tr>
 					<td><div
 							class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-column mt-2">
-							<h:link styleClass="btn btn-primary mb-1" value="My Account"
-								outcome="MyAccount" />
-								<h:link styleClass="btn btn-primary mb-1" value="Add money"
-								outcome="AddMoney" />
+							<!--  GUZTIAK -->
+							<div>
+								<h:link styleClass="btn btn-primary mb-1 w-100" value="My Account"
+									outcome="MyAccount" />
+							</div>
+
+							<!--  ERABILTZAILEA SOILIK -->
+							<div class="#{login.rola == 'erabiltzailea' ? '' : 'd-none'}">
+								<h:link styleClass="btn btn-primary mb-1 w-100" value="Add money"
+									outcome="AddMoney" />
+							</div>
+
+							<!--  ADMIN SOILIK -->
+							<div class="#{login.rola == 'admin' ? '' : 'd-none'}">
+							</div>
 						</div></td>
 				</tr>
 			</table>

@@ -12,28 +12,47 @@
 				class="d-flex p-2 flex-column justify-content-center align-items-center text-center">
 				<tr>
 					<td><h:form>
+							<p:growl showDetail="true" />
+
 							<div class="form-group">
 								<label for="user">User</label>
-								<h:inputText id="user" value="#{login.username}"
-									styleClass="form-control"></h:inputText>
+								<p:inputText id="user" required="true" value="#{login.username}"
+									styleClass="form-control"
+									requiredMessage="Username is required"></p:inputText>
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
-								<h:inputSecret id="password" value="#{login.password}"
-									styleClass="form-control"></h:inputSecret>
+								<p:password required="true" id="password"
+									value="#{login.password}" styleClass="form-control"
+									match="password-r" requiredMessage="Password is required">
+								</p:password>
 							</div>
 							<div class="form-group">
 								<label for="password-r">Repeat Password</label>
-								<h:inputSecret id="password-r" value="#{login.passwordRepeat}"
-									styleClass="form-control"></h:inputSecret>
+								<p:password required="true" id="password-r"
+									value="#{login.passwordRepeat}" styleClass="form-control"
+									requiredMessage="Please repeat Password too">
+								</p:password>
 							</div>
 							<div class="form-group">
-								<label for="password">Birth date</label>
-								<p:calendar navigator="false" mode="inline" value="#{login.birthDate}">
+								<p:dataTable styleClass="form-control mt-2" required="true"
+									id="rola" value="#{login.rolak}" var="rola" rowKey="#{rola.izena}"
+									border="1" requiredMessage="Please enter the role."
+									selectionMode="single" selection="#{login.registerRola}">
+									<p:column headerText="Role">
+										#{rola.izena}
+									</p:column>
+								</p:dataTable>
+							</div>
+							<div class="form-group">
+								<label for="birthdate">Birth date</label>
+								<p:calendar required="true"
+									requiredMessage="Birthdate is required" id="birthdate"
+									navigator="true" mode="inline" value="#{login.birthDate}">
 								</p:calendar>
 							</div>
-							<h:commandButton value="Register" styleClass="btn btn-primary"
-								action="#{login.registerEgin}" />
+							<h:commandButton validateClient="true" value="Register"
+								styleClass="btn btn-primary" action="#{login.registerEgin}" />
 						</h:form></td>
 				</tr>
 			</table>

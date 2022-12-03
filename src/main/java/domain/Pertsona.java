@@ -1,7 +1,10 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,13 +38,13 @@ public abstract class Pertsona {
 
 	public int getAdina() {
 		Calendar gaur = Calendar.getInstance();
-		int urteDif = Math.abs(gaur.get(Calendar.YEAR) - jaiotzeData.getYear());
-		int hilbDif = gaur.get(Calendar.MONTH) - jaiotzeData.getMonth();
-
-		int hilabKop = urteDif * 12 + (hilbDif > 0 ? hilbDif : 0);
-
-		int adina = hilabKop / 12;
-		return adina;
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(jaiotzeData);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int monthD = calendar.get(Calendar.DAY_OF_MONTH);
+		Period p = Period.between(LocalDate.of(year,month,monthD),LocalDate.of(gaur.get(Calendar.YEAR),gaur.get(Calendar.MONTH),gaur.get(Calendar.DAY_OF_MONTH)));
+		return p.getYears();
 	}
 
 	public String toString() {

@@ -125,13 +125,15 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@Override
-	public Pertsona registerEgin(String username, String password, Date birthDate) {
+	public Pertsona registerEgin(String username, String password, Date birthDate, String rola) {
 		dbManager.open();
 		Pertsona p = null;
 		try {
-			p = dbManager.erregistratu(username, password,birthDate, "erabiltzailea");
+			p = dbManager.erregistratu(username, password,birthDate, rola);
 		} catch (PertsonaAlreadyExists e) {
 			System.out.println(e.getMessage());
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());			
 		}
 		dbManager.close();
 		return p;

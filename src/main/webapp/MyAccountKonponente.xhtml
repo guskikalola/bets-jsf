@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<div
+				class="d-flex flex-column justify-content-center align-items-center">
+				<div>
+					<a class="p-2 m-auto" href="#"> <h:graphicImage width="125"
+							value="https://pluspng.com/img-png/user-png-icon-download-icons-logos-emojis-users-2240.png" />
+					</a>
+				</div>
+				<div class="d-flex flex-column align-items-center justify-content-center">
+					<p id="izena" class="text fs-3">Izena: #{login.pertsona.izena}</p>
+					<p id="izena" class="text fs-3">Adina: #{login.pertsona.adina}</p>
+					<p id="izena" class="text fs-3">Rola: #{login.rola}</p>
+					<p id="izena" class="#{login.rola == 'erabiltzailea' ? '' : 'd-none'} text fs-3">Dirua: #{login.rola == 'erabiltzailea' ? login.pertsona.saldoa : '0'}</p>
+				</div>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

@@ -75,7 +75,7 @@ public interface DataAccessInterface {
 
 	public Pertsona getPertsona(String izena);
 
-	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota) throws PertsonaAlreadyExists;
+	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota) throws PertsonaAlreadyExists, RuntimeException;
 
 	public boolean loginZuzena(String izena, String pasahitza);
 }
