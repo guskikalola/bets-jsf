@@ -10,8 +10,8 @@ body {
 	background: #3b4252;
 }
 
-p, label {
-	color: #e5e9f0;
+p, label,  .nav-item > a {
+	color: #e5e9f0 !important;
 }
 
 small {

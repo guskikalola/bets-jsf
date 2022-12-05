@@ -23,8 +23,6 @@
    PATH="/Login.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="true::#Main.xhtml" NAME="output"
     PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="true" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="false::#Login.xhtml" NAME="output1"
-    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="false" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Register.xhtml" PATH="/Register.xhtml"
@@ -37,7 +35,7 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#WEB-INF#facelets#templates#Goiburukoa.xhtml"
   PATH="/WEB-INF/facelets/templates/Goiburukoa.xhtml"
-  SHAPE="331,105,0,0" model-entity="JSFProcessGroup">
+  SHAPE="432,136,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM
    ID="rules:#WEB-INF#facelets#templates#Goiburukoa.xhtml:0" NAME="item"
    PATH="/WEB-INF/facelets/templates/Goiburukoa.xhtml" model-entity="JSFProcessItem">

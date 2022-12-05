@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<table
+				class="d-flex p-2 flex-column justify-content-center align-items-center text-center">
+				<tr>
+					<td><h:form>
+							<div class="form-group">
+								<label for="user">Money Amount</label>
+								<p:inputText id="amount" required="true" requiredMessage="Money amount is required" value="#{diruaSartu.amount}" styleClass="form-control"></p:inputText>
+							</div>
+							<h:commandButton value="Add Money" styleClass="btn btn-primary mt-2" action="#{diruaSartu.diruaSartu(login.pertsona)}"/>
+						</h:form></td>
+				</tr>
+			</table>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

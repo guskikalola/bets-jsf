@@ -3,6 +3,7 @@ package dataAccess;
 import java.util.Date;
 import java.util.List;
 
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
 import domain.Question;
@@ -79,4 +80,6 @@ public interface DataAccessInterface {
 	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota) throws PertsonaAlreadyExists, RuntimeException, AdinaEzNahikoaException;
 
 	public boolean loginZuzena(String izena, String pasahitza);
+
+	public double diruaSartu(Erabiltzailea p, double amount);
 }

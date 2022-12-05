@@ -35,14 +35,8 @@ public class Erabiltzailea extends Pertsona {
 		}
 	}
 
-	public void saldoaAldatu(Double diruKop) {
-		this.setSaldoa(this.getSaldoa() + diruKop);
-	}
-
-	public void saldoaAldatu(double irabaziDirua) {
-
-		double dirua = irabaziDirua + this.getSaldoa();
-		this.setSaldoa(dirua);
+	public void saldoaGehitu(Double diruKop) {
+		this.saldoa += diruKop;
 	}
 
 	@Override

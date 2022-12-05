@@ -79,7 +79,7 @@ public class LoginRegisterBean {
 	}
 
 	public Pertsona getPertsona() {
-		return pertsona;
+		return pertsona != null ? FacadeBean.getBusinessLogic().getPertsona(pertsona.getIzena()) : null;
 	}
 
 	public String getPasswordRepeat() {
@@ -128,8 +128,6 @@ public class LoginRegisterBean {
 	}
 
 	public String loginEgin() {
-		if (username == null || password == null)
-			return "false";
 
 		pertsona = FacadeBean.getBusinessLogic().loginEgin(username, password);
 		username = null;
@@ -137,7 +135,12 @@ public class LoginRegisterBean {
 		passwordRepeat = null;
 		registerRola = null;
 		
-		return pertsona != null ? "true" : "false";
+		if(pertsona == null) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("User or password is incorrect"));
+		}
+		
+		return pertsona != null ? "true" : "";
 	}
 
 	public String registerEgin() {

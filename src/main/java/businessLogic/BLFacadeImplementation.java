@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import dataAccess.DataAccessInterface;
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
 import domain.Question;
@@ -115,6 +116,8 @@ public class BLFacadeImplementation implements BLFacade {
 
 	@Override
 	public Pertsona loginEgin(String username, String password) {
+		if (username == null || password == null)
+			return null;
 		dbManager.open();
 		Pertsona p = null;
 		if (dbManager.loginZuzena(username, password)) {
@@ -128,9 +131,36 @@ public class BLFacadeImplementation implements BLFacade {
 	@Override
 	public Pertsona registerEgin(String username, String password, Date birthDate, String rola)
 			throws AdinaEzNahikoaException, PertsonaAlreadyExists, RuntimeException {
+		if (username == null || password == null || birthDate == null || rola == null)
+			return null;
 		dbManager.open();
 		Pertsona p = null;
 		p = dbManager.erregistratu(username, password, birthDate, rola);
+		dbManager.close();
+		return p;
+	}
+
+	@Override
+	public double diruaSartu(Erabiltzailea p, double amount) throws RuntimeException {
+		double saldoBerria = 0;
+		if (p == null) {
+			throw new RuntimeException("Erabiltzailea cannot be null");
+		} else if (amount <= 0) {
+			throw new RuntimeException("Inputed money amount is not correct. It must be > 0");
+		} else {
+			dbManager.open();
+			saldoBerria = dbManager.diruaSartu(p,amount);
+			dbManager.close();
+		}
+		return saldoBerria;
+	}
+
+	@Override
+	public Pertsona getPertsona(String izena) {
+		if(izena == null) return null;
+		Pertsona p = null;
+		dbManager.open();
+		p = dbManager.getPertsona(izena);
 		dbManager.close();
 		return p;
 	}

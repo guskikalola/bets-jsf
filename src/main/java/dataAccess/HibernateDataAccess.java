@@ -274,4 +274,17 @@ public class HibernateDataAccess implements DataAccessInterface {
 		return p.pasahitzaZuzena(pasahitza);
 	}
 
+	@Override
+	public double diruaSartu(Erabiltzailea p, double amount) {
+		double saldoBerria = 0;
+		if(p != null && amount > 0) {
+			session.beginTransaction();
+			Erabiltzailea e = (Erabiltzailea) session.get(Erabiltzailea.class, p.getIzena());
+			e.saldoaGehitu(amount);
+			saldoBerria = e.getSaldoa();
+			session.getTransaction().commit();
+		}
+		return saldoBerria;
+	}
+
 }

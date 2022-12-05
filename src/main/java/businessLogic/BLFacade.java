@@ -3,6 +3,7 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
 //import domain.Booking;
@@ -55,5 +56,11 @@ public interface BLFacade  {
 
 	public Pertsona loginEgin(String username, String password);
 	public Pertsona registerEgin(String username, String password, Date birthDate, String rola) throws AdinaEzNahikoaException, PertsonaAlreadyExists, RuntimeException;
+
+
+	public double diruaSartu(Erabiltzailea p, double amount);
+
+
+	public Pertsona getPertsona(String izena);
 	
 }
