@@ -1,9 +1,23 @@
 @charset "UTF-8";
-
+/*
+	Erabilitako koloreak : https://github.com/arcticicestudio/nord
+*/
 body {
-	background: gray;
+	background: #2e3440;
 }
 
 .gorputza {
-	background: white;
+	background: #3b4252;
+}
+
+p, label {
+	color: #e5e9f0;
+}
+
+small {
+	color: #d8dee9;
+}
+
+#navbar {
+	background: #4c566a;
 }

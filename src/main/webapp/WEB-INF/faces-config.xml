@@ -60,11 +60,6 @@
    <to-view-id>/Main.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
-  <navigation-case>
-   <from-outcome>false</from-outcome>
-   <to-view-id>/Register.xhtml</to-view-id>
-   <redirect/>
-  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/WEB-INF/facelets/templates/Goiburukoa.xhtml</from-view-id>

@@ -6,6 +6,7 @@
 <ui:composition>
 	<f:view>
 		<h:head>
+			<h:outputScript library="js" name="register.js"></h:outputScript>
 		</h:head>
 		<h:body>
 			<table
@@ -52,10 +53,13 @@
 								</p:calendar>
 							</div>
 							<h:commandButton validateClient="true" value="Register"
-								styleClass="btn btn-primary" action="#{login.registerEgin}" />
+								styleClass="btn btn-primary mt-2" action="#{login.registerEgin}" />
 						</h:form></td>
 				</tr>
 			</table>
+			<script>
+				
+			</script>
 		</h:body>
 	</f:view>
 </ui:composition>

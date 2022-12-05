@@ -9,6 +9,7 @@ import dataAccess.DataAccessInterface;
 import domain.Event;
 import domain.Pertsona;
 import domain.Question;
+import exceptions.AdinaEzNahikoaException;
 import exceptions.EventFinished;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
@@ -116,8 +117,8 @@ public class BLFacadeImplementation implements BLFacade {
 	public Pertsona loginEgin(String username, String password) {
 		dbManager.open();
 		Pertsona p = null;
-		if(dbManager.loginZuzena(username, password)) {
-			dbManager.open(); // login zuzena commit egiten duenean sahia akabo	
+		if (dbManager.loginZuzena(username, password)) {
+			dbManager.open(); // login zuzena commit egiten duenean sahia akabo
 			p = dbManager.getPertsona(username);
 		}
 		dbManager.close();
@@ -125,16 +126,11 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@Override
-	public Pertsona registerEgin(String username, String password, Date birthDate, String rola) {
+	public Pertsona registerEgin(String username, String password, Date birthDate, String rola)
+			throws AdinaEzNahikoaException, PertsonaAlreadyExists, RuntimeException {
 		dbManager.open();
 		Pertsona p = null;
-		try {
-			p = dbManager.erregistratu(username, password,birthDate, rola);
-		} catch (PertsonaAlreadyExists e) {
-			System.out.println(e.getMessage());
-		} catch (RuntimeException e) {
-			System.out.println(e.getMessage());			
-		}
+		p = dbManager.erregistratu(username, password, birthDate, rola);
 		dbManager.close();
 		return p;
 	}

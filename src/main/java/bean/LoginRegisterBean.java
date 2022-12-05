@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import domain.Admin;
 import domain.Erabiltzailea;
 import domain.Pertsona;
+import exceptions.AdinaEzNahikoaException;
+import exceptions.PertsonaAlreadyExists;
 
 public class LoginRegisterBean {
 
@@ -146,13 +151,24 @@ public class LoginRegisterBean {
 			rola = "erabiltzailea";
 		}
 
-		pertsona = FacadeBean.getBusinessLogic().registerEgin(username, password, birthDate,rola);
+		try {
+			pertsona = FacadeBean.getBusinessLogic().registerEgin(username, password, birthDate,rola);
+		} catch (AdinaEzNahikoaException e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(e.getMessage()));
+		} catch (PertsonaAlreadyExists e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(e.getMessage()));
+		} catch (RuntimeException e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(e.getMessage()));
+		}
 		username = null;
 		password = null;
 		passwordRepeat = null;
 		registerRola = null;
 
-		return pertsona != null ? "true" : "false";
+		return pertsona != null ? "true" : "";
 	}
 
 	public String logoutEgin() {

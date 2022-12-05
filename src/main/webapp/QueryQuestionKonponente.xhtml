@@ -10,15 +10,15 @@
 			<h:outputScript library="js" name="calendar.js"></h:outputScript>
 		</h:head>
 		<h:body>
-			<h:form id="nireForm">
+			<h:form id="nireForm" styleClass="d-flex flex-column justify-content-center align-items-center">
 				<!--  -->
 				<p:calendar
-					beforeShowDay="function(date){return highlightDays(#{queryQuestion.getEventsMonth()},date)}"
+					styleClass="w-100" beforeShowDay="function(date){return highlightDays(#{queryQuestion.getEventsMonth()},date)}"
 					navigator="false" mode="inline">
 					<p:ajax event="dateSelect" listener="#{queryQuestion.onDateSelect}"
 						update=":mezuak nireForm:gertaerak nireForm:galderak"></p:ajax>
 				</p:calendar>
-				<p:dataTable id="gertaerak" value="#{queryQuestion.gertaerak}"
+				<p:dataTable styleClass="w-100" id="gertaerak" value="#{queryQuestion.gertaerak}"
 					var="item" selectionMode="single" border="1"
 					rowKey="#{item.eventNumber}">
 					<p:ajax event="rowSelect" listener="#{queryQuestion.onEventSelect}"
@@ -27,7 +27,7 @@
 					<p:column headerText="Event#">#{item.eventNumber}</p:column>
 					<p:column headerText="Event">#{item.description}</p:column>
 				</p:dataTable>
-				<p:dataTable id="galderak" value="#{queryQuestion.galderak}"
+				<p:dataTable styleClass="w-100" id="galderak" value="#{queryQuestion.galderak}"
 					var="item" selectionMode="single" border="1"
 					rowKey="#{item.questionNumber}">
 					<p:ajax event="rowSelect"

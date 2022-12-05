@@ -11,33 +11,32 @@
 			<table
 				class="d-flex p-2 flex-column justify-content-center align-items-center text-center">
 				<tr>
-					<td>Select Option</td>
+					<td><p>Select Option</p></td>
 				</tr>
 				<tr>
 					<td><h:link styleClass="btn btn-primary"
 							value="Query Questions" outcome="QueryQuestion" /></td>
 				</tr>
-				<tr>
-					<td><h:link styleClass="btn btn-primary"
-							value="Create Question" outcome="CreateQuestion" /></td>
-				</tr>
+
 				<tr>
 					<td><div
 							class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-column mt-2">
 							<!--  GUZTIAK -->
 							<div>
-								<h:link styleClass="btn btn-primary mb-1 w-100" value="My Account"
-									outcome="MyAccount" />
+								<h:link styleClass="btn btn-primary mb-1 w-100"
+									value="My Account" outcome="MyAccount" />
 							</div>
 
 							<!--  ERABILTZAILEA SOILIK -->
 							<div class="#{login.rola == 'erabiltzailea' ? '' : 'd-none'}">
-								<h:link styleClass="btn btn-primary mb-1 w-100" value="Add money"
-									outcome="AddMoney" />
+								<h:link styleClass="btn btn-primary mb-1 w-100"
+									value="Add money" outcome="AddMoney" />
 							</div>
 
 							<!--  ADMIN SOILIK -->
 							<div class="#{login.rola == 'admin' ? '' : 'd-none'}">
+								<h:link styleClass="btn btn-primary" value="Create Question"
+									outcome="CreateQuestion" />
 							</div>
 						</div></td>
 				</tr>

@@ -33,8 +33,6 @@
    PATH="/Register.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="true::#Main.xhtml" NAME="output"
     PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="true" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="false::#Register.xhtml" NAME="output1"
-    PATH="/Register.xhtml" TARGET="rules:#Register.xhtml" TITLE="false" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#WEB-INF#facelets#templates#Goiburukoa.xhtml"

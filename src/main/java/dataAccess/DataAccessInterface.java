@@ -6,6 +6,7 @@ import java.util.List;
 import domain.Event;
 import domain.Pertsona;
 import domain.Question;
+import exceptions.AdinaEzNahikoaException;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
@@ -75,7 +76,7 @@ public interface DataAccessInterface {
 
 	public Pertsona getPertsona(String izena);
 
-	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota) throws PertsonaAlreadyExists, RuntimeException;
+	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota) throws PertsonaAlreadyExists, RuntimeException, AdinaEzNahikoaException;
 
 	public boolean loginZuzena(String izena, String pasahitza);
 }

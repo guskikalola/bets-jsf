@@ -17,6 +17,7 @@ import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
 import domain.Question;
+import exceptions.AdinaEzNahikoaException;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
@@ -241,7 +242,7 @@ public class HibernateDataAccess implements DataAccessInterface {
 
 	@Override
 	public Pertsona erregistratu(String izena, String pasahitza, Date jaiotzeData, String mota)
-			throws PertsonaAlreadyExists, RuntimeException {
+			throws PertsonaAlreadyExists, AdinaEzNahikoaException, RuntimeException {
 		Pertsona p = this.getPertsona(izena);
 		this.open(); // Commit session itxi egiten du
 		if (p != null)
@@ -255,6 +256,7 @@ public class HibernateDataAccess implements DataAccessInterface {
 			} else {
 				p = new Erabiltzailea(izena, pasahitza, jaiotzeData);
 			}
+			if(p.getAdina() < 18) throw new AdinaEzNahikoaException("Sortutako pertsona ez du adin minimoa gainditzen. " + p.getAdina() + " < 18");
 			session.persist(p);
 			session.getTransaction().commit();
 			return p;
