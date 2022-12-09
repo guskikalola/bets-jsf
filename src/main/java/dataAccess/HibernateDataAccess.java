@@ -1,5 +1,7 @@
 package dataAccess;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -122,6 +124,14 @@ public class HibernateDataAccess implements DataAccessInterface {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 
 			}
+			
+			String string = "May 2, 2002";
+			DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+
+			Pertsona erab1 = new Erabiltzailea("erab1","erab1",format.parse(string));	
+			Pertsona erab2 = new Erabiltzailea("erab2","erab2",format.parse(string));	
+			Pertsona admin = new Admin("admin","admin",format.parse(string));	
+			
 			/*
 			 * DAGOENEKO GORDETZEN DIRA EVENT PERSIST EGITEN DUELAKO BERE GALDERA LISTAN
 			 * session.persist(q1); session.persist(q2); session.persist(q3);
@@ -148,6 +158,10 @@ public class HibernateDataAccess implements DataAccessInterface {
 			session.persist(ev18);
 			session.persist(ev19);
 			session.persist(ev20);
+			
+			session.persist(admin);
+			session.persist(erab1);
+			session.persist(erab2);
 
 			session.getTransaction().commit();
 			System.out.println("DB initialized");
@@ -281,7 +295,9 @@ public class HibernateDataAccess implements DataAccessInterface {
 			session.beginTransaction();
 			Erabiltzailea e = (Erabiltzailea) session.get(Erabiltzailea.class, p.getIzena());
 			e.saldoaGehitu(amount);
+			e.mugimenduaSortu(amount, "dirua_sartuta");
 			saldoBerria = e.getSaldoa();
+			session.persist(e);
 			session.getTransaction().commit();
 		}
 		return saldoBerria;

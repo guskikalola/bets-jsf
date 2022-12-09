@@ -22,7 +22,7 @@ public class AuthFilter implements Filter {
 			"Main.xhtml" };
 	public static final String[] SAIOA_HASITA = { "MyAccount.xhtml" };
 	public static final String[] ADMIN = { "CreateQuestion.xhtml" };
-	public static final String[] ERABILTZAILEA = { "AddMoney.xhtml" };
+	public static final String[] ERABILTZAILEA = { "AddMoney.xhtml", "Mugimenduak.xhtml"};
 
 	public static final String BAIMENIK_EZ = "/faces/BaimenikEz.xhtml";
 	public static final String LOGIN_PAGE = "/faces/Login.xhtml";

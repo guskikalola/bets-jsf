@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<div
+				class="d-flex flex-column justify-content-center align-items-center">
+				<table class="table table-stripped" id="mugimenduak-taula">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Money</th>
+							<th scope="col">Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="mugimendua" value="#{login.pertsona.mugimenduak}">
+							<tr>
+								<th scope="row">#{mugimendua.mugimenduZbkia}</th>
+								<td>#{mugimendua.kantitatea}</td>
+								<td>#{mugimendua.arrazoia}</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>
