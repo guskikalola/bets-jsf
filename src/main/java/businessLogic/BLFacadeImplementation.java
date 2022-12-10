@@ -1,11 +1,14 @@
 package businessLogic;
 
+import java.util.ArrayList;
 //hola
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import dataAccess.DataAccessInterface;
+import domain.Admin;
+import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
@@ -164,5 +167,34 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return p;
 	}
+
+	@Override
+	public List<Pertsona> getUsers() {
+		List<Pertsona> users = null;
+		dbManager.open();
+		users = dbManager.getUsers();
+		dbManager.close();
+		return users == null ? new ArrayList<Pertsona>() : users;
+	}
+
+	@Override
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) {
+		Blokeoa b = null;
+		dbManager.open();
+		b = dbManager.blokeatu(nork,nori,mezua);
+		dbManager.close();
+		return b;
+	}
+
+	@Override
+	public Blokeoa desblokeatu(Pertsona nor) {
+		Blokeoa b = null;
+		dbManager.open();
+		b = dbManager.desblokeatu(nor);
+		dbManager.close();
+		return b;
+	}
+	
+	
 
 }

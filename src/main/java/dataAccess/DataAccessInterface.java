@@ -3,6 +3,8 @@ package dataAccess;
 import java.util.Date;
 import java.util.List;
 
+import domain.Admin;
+import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
@@ -82,4 +84,10 @@ public interface DataAccessInterface {
 	public boolean loginZuzena(String izena, String pasahitza);
 
 	public double diruaSartu(Erabiltzailea p, double amount);
+
+	public List<Pertsona> getUsers();
+
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua);
+	
+	public Blokeoa desblokeatu(Pertsona nor);
 }

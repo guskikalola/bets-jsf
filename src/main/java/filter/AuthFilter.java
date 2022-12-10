@@ -18,13 +18,14 @@ import businessLogic.BLFacade;
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class AuthFilter implements Filter {
 
-	public static final String[] PUBLIC = { "BaimenikEz.xhtml", "Login.xhtml", "Register.xhtml", "QueryQuestion.xhtml",
+	public static final String[] PUBLIC = { "Blokeatuta.xhtml", "BaimenikEz.xhtml", "Login.xhtml", "Register.xhtml", "QueryQuestion.xhtml",
 			"Main.xhtml" };
 	public static final String[] SAIOA_HASITA = { "MyAccount.xhtml" };
-	public static final String[] ADMIN = { "CreateQuestion.xhtml" };
-	public static final String[] ERABILTZAILEA = { "AddMoney.xhtml", "Mugimenduak.xhtml"};
+	public static final String[] ADMIN = { "CreateQuestion.xhtml", "Erabiltzaileak.xhtml" };
+	public static final String[] ERABILTZAILEA = { "AddMoney.xhtml", "Mugimenduak.xhtml" };
 
 	public static final String BAIMENIK_EZ = "/faces/BaimenikEz.xhtml";
+	public static final String BLOKEATUTA = "/faces/Blokeatuta.xhtml";
 	public static final String LOGIN_PAGE = "/faces/Login.xhtml";
 
 	private boolean barruanDago(String reqURI, String[] domain) {
@@ -48,22 +49,26 @@ public class AuthFilter implements Filter {
 
 		LoginRegisterBean login = (LoginRegisterBean) httpServletRequest.getSession().getAttribute("login");
 		String reqURI = httpServletRequest.getRequestURI();
+		if (login != null && login.saioaHasita() && login.getPertsona().getBlokeoa() != null && reqURI.indexOf(BLOKEATUTA) == -1) {
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + BLOKEATUTA);
+		} else {
 //			filterChain.doFilter(servletRequest, servletResponse);
 //			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + BAIMENIK_EZ);
-		if (barruanDago(reqURI, PUBLIC)) {
-			filterChain.doFilter(servletRequest, servletResponse);
-		} else {
-			if (login == null || !login.saioaHasita()) {
-				httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + LOGIN_PAGE);
+			if (barruanDago(reqURI, PUBLIC)) {
+				filterChain.doFilter(servletRequest, servletResponse);
 			} else {
-				if (barruanDago(reqURI, SAIOA_HASITA))
-					filterChain.doFilter(servletRequest, servletResponse);
-				else if (barruanDago(reqURI, ADMIN) && login.getRola().equals("admin"))
-					filterChain.doFilter(servletRequest, servletResponse);
-				else if (barruanDago(reqURI, ERABILTZAILEA) && login.getRola().equals("erabiltzailea"))
-					filterChain.doFilter(servletRequest, servletResponse);
-				else
-					httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + BAIMENIK_EZ);
+				if (login == null || !login.saioaHasita()) {
+					httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + LOGIN_PAGE);
+				} else {
+					if (barruanDago(reqURI, SAIOA_HASITA))
+						filterChain.doFilter(servletRequest, servletResponse);
+					else if (barruanDago(reqURI, ADMIN) && login.getRola().equals("admin"))
+						filterChain.doFilter(servletRequest, servletResponse);
+					else if (barruanDago(reqURI, ERABILTZAILEA) && login.getRola().equals("erabiltzailea"))
+						filterChain.doFilter(servletRequest, servletResponse);
+					else
+						httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + BAIMENIK_EZ);
+				}
 			}
 		}
 	}

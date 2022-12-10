@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<div
+				class="d-flex flex-column justify-content-center align-items-center">
+
+				<table class="table table-stripped" id="taula-b">
+					<thead>
+						<tr>
+							<th scope="col">Username</th>
+							<th scope="col">Role</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<ui:repeat var="user" value="#{users.getUsersList()}">
+							<tr>
+								<th scope="row">#{user.izena}</th>
+								<td>#{user.getClass().getSimpleName()}</td>
+								<td><button
+										onclick="let target = this; document.getElementById('erabiltzaileak-form:formBlokeatu').value = '#{user.blokeoa ==
+											null ? 'Blokeatu' : 'Desblokeatu'}'; document.getElementById('blokeoMezua').classList.add('#{user.blokeoa ==
+												null ? 'd-flex' : 'd-none'}');document.getElementById('erabiltzaileak-form:userIzena').value = '#{user.izena}';"
+										class="btn btn-primary" data-bs-toggle="modal"
+										data-bs-target="#blokeatuModal">#{user.blokeoa ==
+										null ? 'Blokeatu' : 'Desblokeatu'}</button></td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</div>
+			<!-- Modal ( PERTSONA BLOKEATU ) -->
+
+			<div class="modal fade" id="blokeatuModal" tabindex="-1"
+				role="dialog" aria-labelledby="blokeatuModalLabel"
+				aria-hidden="true">
+				<h:form id="erabiltzaileak-form">
+					<h:inputHidden value="#{users.userIzena}" id="userIzena"></h:inputHidden>
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="blokeatuModalLabel">Block User</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+							<div id="blokeoMezua">
+								<label style="color: black !important;">Block
+									message</label>
+								<p:inputTextarea value="#{users.mezua}">
+								</p:inputTextarea>
+							</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Cancel</button>
+								<h:commandButton id="formBlokeatu" styleClass="btn btn-danger"
+									action="#{users.blokeatu(login.pertsona)}"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

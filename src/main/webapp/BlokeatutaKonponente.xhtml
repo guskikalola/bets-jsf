@@ -10,7 +10,14 @@
 		<h:body>
 			<div
 				class="d-flex flex-column justify-content-center align-items-center">
-				<p class="text-danger">Ez duzu baimenik orrialde hau ikusteko</p>
+				<div class="#{login.pertsona.blokeoa == null ? 'd-none' : ''}">
+					<p class="text-danger">Zure kontua blokeatuta dago.</p>
+					<p>Blokeatu dizu: #{login.pertsona.blokeoa.nork.izena}</p>
+					<p>Arrazoia: #{login.pertsona.blokeoa.mezua}</p>
+				</div>
+				<div class="#{login.pertsona.blokeoa == null ? '' : 'd-none'}">
+					<p class="text-success">Ez zaude blokeatuta</p>
+				</div>
 			</div>
 		</h:body>
 	</f:view>

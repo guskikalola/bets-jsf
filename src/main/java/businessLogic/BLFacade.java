@@ -3,6 +3,8 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 
+import domain.Admin;
+import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
@@ -62,5 +64,10 @@ public interface BLFacade  {
 
 
 	public Pertsona getPertsona(String izena);
+
+
+	public List<Pertsona> getUsers();
 	
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua);
+	public Blokeoa desblokeatu(Pertsona nor);
 }

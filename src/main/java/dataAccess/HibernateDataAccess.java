@@ -15,6 +15,7 @@ import org.hibernate.Session;
 
 import configuration.UtilDate;
 import domain.Admin;
+import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
 import domain.Pertsona;
@@ -301,6 +302,43 @@ public class HibernateDataAccess implements DataAccessInterface {
 			session.getTransaction().commit();
 		}
 		return saldoBerria;
+	}
+
+	@Override
+	public List<Pertsona> getUsers() {
+		session.beginTransaction();
+		Query query = session.createQuery("from Pertsona");
+		List<Pertsona> users = query.list();
+		session.getTransaction().commit();
+		return users;
+	}
+
+	@Override
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) {
+		Admin norkDB = null;
+		Pertsona noriDB = null;
+		Blokeoa b = null;
+		session.beginTransaction();
+		norkDB = (Admin) session.get(Admin.class, nork.getIzena());
+		noriDB = (Pertsona) session.get(Pertsona.class, nori.getIzena());
+		b = noriDB.blokeatu(norkDB, mezua);
+		session.persist(noriDB);
+		session.getTransaction().commit();
+		return b;
+	}
+
+	@Override
+	public Blokeoa desblokeatu(Pertsona nor) {
+		Pertsona norDB = null;
+		Blokeoa b = null;
+		session.beginTransaction();
+		norDB = (Pertsona) session.get(Pertsona.class, nor.getIzena());
+		b = norDB.getBlokeoa();
+		norDB.setBlokeoa(null);
+		session.delete(b);
+		session.persist(norDB);
+		session.getTransaction().commit();
+		return b;
 	}
 
 }

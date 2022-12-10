@@ -12,7 +12,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse d-flex flex-row justify-content-between" id="navbarNav">
+		<div class="collapse navbar-collapse d-lg-flex flex-row justify-content-between" id="navbarNav">
 			<div id="nabigazio-estekak">
 				<div class="d-flex flex-row">
 					<ul class="navbar-nav">
@@ -32,11 +32,11 @@
 			</div>
 
 
-			<div class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-row">
-				<div class="p-2 m-auto">
+			<div class="#{login.saioaHasita() ? '' : 'd-none'} d-flex flex-row align-items-center bg-dark">
+				<div class="p-2 m-lg-auto">
 					<p>#{login.pertsona.izena}</p>
 				</div>
-				<h:link class="p-2 m-auto navbar-brand" outcome="MyAccount">
+				<h:link class="p-2 m-lg-auto img" outcome="MyAccount">
 					<h:graphicImage width="30" height="30"
 						value="https://pluspng.com/img-png/user-png-icon-download-icons-logos-emojis-users-2240.png" />
 				</h:link>

@@ -18,5 +18,6 @@
   <mapping class="domain.Erabiltzailea"/>
   <mapping class="domain.Admin"/>
   <mapping class="domain.Mugimendua"/>
+  <mapping class="domain.Blokeoa"/>
  </session-factory>
 </hibernate-configuration>
