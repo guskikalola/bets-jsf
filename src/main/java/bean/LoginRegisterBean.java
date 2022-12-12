@@ -138,6 +138,8 @@ public class LoginRegisterBean {
 		if(pertsona == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("User or password is incorrect"));
+		} else {
+			FacadeBean.getBusinessLogic().log("Pertsona bat saioa hasi du. [Izena: " + pertsona.getIzena() + " | Rola: " + pertsona.getClass().getSimpleName() + "]" );
 		}
 		
 		return pertsona != null ? "true" : "";
@@ -156,6 +158,7 @@ public class LoginRegisterBean {
 
 		try {
 			pertsona = FacadeBean.getBusinessLogic().registerEgin(username, password, birthDate,rola);
+			FacadeBean.getBusinessLogic().log("Pertsona bat kontua sortu du. [Izena: " + pertsona.getIzena() + " | Rola: " + pertsona.getClass().getSimpleName() + "]");
 		} catch (AdinaEzNahikoaException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(e.getMessage()));
@@ -176,6 +179,7 @@ public class LoginRegisterBean {
 
 	public String logoutEgin() {
 		System.out.println("Saioa itxita");
+		FacadeBean.getBusinessLogic().log("Pertsona bat saioa itxi du. [Izena: " + pertsona.getIzena() + " | Rola: " + pertsona.getClass().getSimpleName() + "]");
 		pertsona = null;
 		return "logout";
 	}

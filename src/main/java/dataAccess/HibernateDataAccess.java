@@ -18,9 +18,11 @@ import domain.Admin;
 import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
+import domain.LogEntry;
 import domain.Pertsona;
 import domain.Question;
 import exceptions.AdinaEzNahikoaException;
+import exceptions.DagoenekoBlokeatutaDagoException;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
@@ -314,16 +316,20 @@ public class HibernateDataAccess implements DataAccessInterface {
 	}
 
 	@Override
-	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) {
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) throws DagoenekoBlokeatutaDagoException {
 		Admin norkDB = null;
 		Pertsona noriDB = null;
 		Blokeoa b = null;
 		session.beginTransaction();
 		norkDB = (Admin) session.get(Admin.class, nork.getIzena());
 		noriDB = (Pertsona) session.get(Pertsona.class, nori.getIzena());
-		b = noriDB.blokeatu(norkDB, mezua);
-		session.persist(noriDB);
-		session.getTransaction().commit();
+		if(noriDB.getBlokeoa() != null) {
+			throw new DagoenekoBlokeatutaDagoException("Pertsona hau dagoeneko blokeatuta dago. Perstona: " + nori.getIzena());
+		} else {
+			b = noriDB.blokeatu(norkDB, mezua);
+			session.persist(noriDB);
+			session.getTransaction().commit();			
+		}
 		return b;
 	}
 
@@ -339,6 +345,26 @@ public class HibernateDataAccess implements DataAccessInterface {
 		session.persist(norDB);
 		session.getTransaction().commit();
 		return b;
+	}
+
+	@Override
+	public LogEntry log(String mezua) {
+		LogEntry logEntry = null;
+		session.beginTransaction();
+		logEntry = new LogEntry(mezua);
+		session.persist(logEntry);
+		session.getTransaction().commit();
+		return logEntry;
+	}
+
+	@Override
+	public List<LogEntry> getLogs() {
+		List<LogEntry> logEntries = null;
+		session.beginTransaction();
+		Query q = session.createQuery("from LogEntry");
+		logEntries = q.list();
+		session.getTransaction().commit();
+		return logEntries;
 	}
 
 }

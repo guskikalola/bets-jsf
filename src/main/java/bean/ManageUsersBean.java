@@ -9,12 +9,15 @@ import businessLogic.BLFacade;
 import domain.Admin;
 import domain.Blokeoa;
 import domain.Pertsona;
+import exceptions.DagoenekoBlokeatutaDagoException;
+import exceptions.ZureBuruaBlokeatuException;
 
 public class ManageUsersBean {
 
 	private BLFacade facade;
 	private String userIzena;
 	private String mezua;
+
 	public ManageUsersBean() {
 		facade = FacadeBean.getBusinessLogic();
 		userIzena = null;
@@ -44,17 +47,34 @@ public class ManageUsersBean {
 	public String blokeatu(Admin nork) {
 		Pertsona nori = facade.getPertsona(userIzena);
 		Blokeoa b = null;
+		String gaizki = "false";
+		String ondo = "true";
 		if (nori.getBlokeoa() != null) {
 			b = facade.desblokeatu(nori);
-			return "true";
-		} else {
-			b = facade.blokeatu(nork, nori, mezua);
 			if (b == null) {
 				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Ezin izan da pertsona hori desblokeatu"));
+				return gaizki;
+			}
+			FacadeBean.getBusinessLogic().log(String.format("Admin(%s) Pertsona(%s) desblokeatu du.",
+					nork.getIzena(), nori.getIzena(), b.getId()));
+			return ondo;
+		} else {
+			try {
+				b = facade.blokeatu(nork, nori, mezua);
+				FacadeBean.getBusinessLogic().log(String.format("Admin(%s) Pertsona(%s) blokeatu(%d) du.",
+						nork.getIzena(), nori.getIzena(), b.getId()));
+				return ondo;
+			} catch (ZureBuruaBlokeatuException e) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+				return gaizki;
+			} catch (DagoenekoBlokeatutaDagoException e) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+				return gaizki;
+			} catch (NullPointerException e) {
+				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage("Ezin izan da pertsona hori blokeatu"));
-				return "false";
-			} else {
-				return "true";
+				return gaizki;
 			}
 		}
 	}

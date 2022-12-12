@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<div class="#{login.saioaHasita() ? 'd-none' : ''}">
+				<p class="text-danger">Ez duzu log-in egin, ez duzu ezer ikusiko
+					hemen.</p>
+			</div>
+			<div class="#{login.saioaHasita() ? '' : 'd-none'}">
+				<div
+					class="d-flex flex-column justify-content-center align-items-center">
+					<table class="table table-stripped" id="taula-b">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Date</th>
+								<th scope="col">Message</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ui:repeat var="log" value="#{logs.getLogs()}">
+								<tr>
+									<th scope="row">#{log.id}</th>
+									<td>#{log.data}</td>
+									<td>#{log.mezua}</td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

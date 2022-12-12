@@ -10,6 +10,7 @@ import org.primefaces.json.JSONArray;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import dataAccess.HibernateDataAccess;
+import domain.LogEntry;
 
 public class FacadeBean {
 	private static FacadeBean singleton = new FacadeBean();
@@ -53,5 +54,6 @@ public class FacadeBean {
 		System.out.println(datesJSON.toString());
 		return datesJSON.toString();
 	}
+
 	
 }

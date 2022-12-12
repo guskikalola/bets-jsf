@@ -7,13 +7,16 @@ import domain.Admin;
 import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
+import domain.LogEntry;
 import domain.Pertsona;
 //import domain.Booking;
 import domain.Question;
 import exceptions.AdinaEzNahikoaException;
+import exceptions.DagoenekoBlokeatutaDagoException;
 import exceptions.EventFinished;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
+import exceptions.ZureBuruaBlokeatuException;
 
 /**
  * Interface that specifies the business logic.
@@ -68,6 +71,11 @@ public interface BLFacade  {
 
 	public List<Pertsona> getUsers();
 	
-	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua);
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) throws ZureBuruaBlokeatuException, DagoenekoBlokeatutaDagoException;
 	public Blokeoa desblokeatu(Pertsona nor);
+	
+	public LogEntry log(String mezua);
+
+
+	public List<LogEntry> getLogs();
 }

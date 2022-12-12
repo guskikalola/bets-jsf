@@ -11,7 +11,9 @@
 </h:head>
 <h:body>
 	<!-- HEADER -->
-	<ui:include src="Goiburukoa.xhtml"></ui:include>
+	<ui:insert name="header">
+		<ui:include src="Goiburukoa.xhtml"></ui:include>
+	</ui:insert>
 	<!-- BODY -->
 	<h:panelGrid class="gorputza" columns="1" align="center" border="3"
 		cellpadding="10" cellspacing="1">

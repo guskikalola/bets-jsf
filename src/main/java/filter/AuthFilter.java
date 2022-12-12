@@ -21,10 +21,11 @@ public class AuthFilter implements Filter {
 	public static final String[] PUBLIC = { "Blokeatuta.xhtml", "BaimenikEz.xhtml", "Login.xhtml", "Register.xhtml", "QueryQuestion.xhtml",
 			"Main.xhtml" };
 	public static final String[] SAIOA_HASITA = { "MyAccount.xhtml" };
-	public static final String[] ADMIN = { "CreateQuestion.xhtml", "Erabiltzaileak.xhtml" };
+	public static final String[] ADMIN = { "Logs.xhtml", "CreateQuestion.xhtml", "Erabiltzaileak.xhtml" };
 	public static final String[] ERABILTZAILEA = { "AddMoney.xhtml", "Mugimenduak.xhtml" };
 
 	public static final String BAIMENIK_EZ = "/faces/BaimenikEz.xhtml";
+	public static final String FACADE_NULL = "/faces/FacadeNull.xhtml";
 	public static final String BLOKEATUTA = "/faces/Blokeatuta.xhtml";
 	public static final String LOGIN_PAGE = "/faces/Login.xhtml";
 
@@ -46,9 +47,15 @@ public class AuthFilter implements Filter {
 		BLFacade facade = FacadeBean.getBusinessLogic();
 		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+		String reqURI = httpServletRequest.getRequestURI();
+		
+		if(facade == null) {
+			if(reqURI.indexOf(FACADE_NULL) == -1) httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + FACADE_NULL);
+			else filterChain.doFilter(servletRequest, servletResponse);
+			return;
+		}
 
 		LoginRegisterBean login = (LoginRegisterBean) httpServletRequest.getSession().getAttribute("login");
-		String reqURI = httpServletRequest.getRequestURI();
 		if (login != null && login.saioaHasita() && login.getPertsona().getBlokeoa() != null && reqURI.indexOf(BLOKEATUTA) == -1) {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + BLOKEATUTA);
 		} else {

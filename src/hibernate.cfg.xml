@@ -19,5 +19,6 @@
   <mapping class="domain.Admin"/>
   <mapping class="domain.Mugimendua"/>
   <mapping class="domain.Blokeoa"/>
+  <mapping class="domain.LogEntry"/>
  </session-factory>
 </hibernate-configuration>

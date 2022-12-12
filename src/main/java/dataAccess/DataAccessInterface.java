@@ -7,9 +7,11 @@ import domain.Admin;
 import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
+import domain.LogEntry;
 import domain.Pertsona;
 import domain.Question;
 import exceptions.AdinaEzNahikoaException;
+import exceptions.DagoenekoBlokeatutaDagoException;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
 
@@ -87,7 +89,11 @@ public interface DataAccessInterface {
 
 	public List<Pertsona> getUsers();
 
-	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua);
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) throws DagoenekoBlokeatutaDagoException;
 	
 	public Blokeoa desblokeatu(Pertsona nor);
+
+	public LogEntry log(String mezua);
+
+	public List<LogEntry> getLogs();
 }

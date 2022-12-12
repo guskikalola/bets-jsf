@@ -29,6 +29,8 @@ public class DiruaSartuBean {
 				double money = facade.diruaSartu((Erabiltzailea)p,amount);
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage("Money added. Current amount of money: " + money));
+				FacadeBean.getBusinessLogic().log(String.format("Erabiltzailea(%s) dirua(%f) sartu du.",
+						p.getIzena(), amount));
 			} catch (RuntimeException e) {
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(e.getMessage()));

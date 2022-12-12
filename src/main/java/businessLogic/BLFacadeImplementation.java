@@ -11,12 +11,15 @@ import domain.Admin;
 import domain.Blokeoa;
 import domain.Erabiltzailea;
 import domain.Event;
+import domain.LogEntry;
 import domain.Pertsona;
 import domain.Question;
 import exceptions.AdinaEzNahikoaException;
+import exceptions.DagoenekoBlokeatutaDagoException;
 import exceptions.EventFinished;
 import exceptions.PertsonaAlreadyExists;
 import exceptions.QuestionAlreadyExist;
+import exceptions.ZureBuruaBlokeatuException;
 
 /**
  * It implements the business logic as a web service.
@@ -178,8 +181,11 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@Override
-	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) {
+	public Blokeoa blokeatu(Admin nork, Pertsona nori, String mezua) throws ZureBuruaBlokeatuException, DagoenekoBlokeatutaDagoException {
 		Blokeoa b = null;
+		if(nork.getIzena().equals(nori.getIzena())) {
+			throw new ZureBuruaBlokeatuException("Ezin duzu zure burua blokeatu.");
+		}
 		dbManager.open();
 		b = dbManager.blokeatu(nork,nori,mezua);
 		dbManager.close();
@@ -193,6 +199,24 @@ public class BLFacadeImplementation implements BLFacade {
 		b = dbManager.desblokeatu(nor);
 		dbManager.close();
 		return b;
+	}
+
+	@Override
+	public LogEntry log(String mezua) {
+		LogEntry logEntry = null;
+		dbManager.open();
+		logEntry = dbManager.log(mezua);
+		dbManager.close();
+		return logEntry;
+	}
+
+	@Override
+	public List<LogEntry> getLogs() {
+		List<LogEntry> logEntries = null;
+		dbManager.open();
+		logEntries = dbManager.getLogs();
+		dbManager.close();
+		return logEntries;
 	}
 	
 	

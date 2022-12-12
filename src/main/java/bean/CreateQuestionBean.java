@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
@@ -99,20 +100,19 @@ public class CreateQuestionBean {
 		return FacadeBean.getEventsMonth();
 	}
 
-	public void createQuestion() {
+	public void createQuestion(String adminIzena) {
 		try {
-			if(question.length() == 0) {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("Galdera sartzea falta da."));	
+			if (question.length() == 0) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Galdera sartzea falta da."));
 			} else {
-				facade.createQuestion(gertaera, question, minBet);
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("Galdera sortuta."));				
+				Question q = facade.createQuestion(gertaera, question, minBet);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Galdera sortuta."));
+				FacadeBean.getBusinessLogic().log(String.format("Admin(%s) galdera(%d) sortu du.",
+						adminIzena, q.getQuestionNumber()));
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Ez dira eremu guztiak bete."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ez dira eremu guztiak bete."));
 		} catch (EventFinished e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Gertaera dagoeneko bukatu da."));

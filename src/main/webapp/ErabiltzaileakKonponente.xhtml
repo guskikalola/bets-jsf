@@ -29,7 +29,7 @@
 										onclick="let target = this; document.getElementById('erabiltzaileak-form:formBlokeatu').value = '#{user.blokeoa ==
 											null ? 'Blokeatu' : 'Desblokeatu'}'; document.getElementById('blokeoMezua').classList.add('#{user.blokeoa ==
 												null ? 'd-flex' : 'd-none'}');document.getElementById('erabiltzaileak-form:userIzena').value = '#{user.izena}';"
-										class="btn btn-primary" data-bs-toggle="modal"
+										class="btn btn-primary #{user.izena.equals(login.pertsona.izena) ? 'disabled' : ''}" data-bs-toggle="modal"
 										data-bs-target="#blokeatuModal">#{user.blokeoa ==
 										null ? 'Blokeatu' : 'Desblokeatu'}</button></td>
 							</tr>
