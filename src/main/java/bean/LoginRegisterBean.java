@@ -14,7 +14,7 @@ import domain.Pertsona;
 import exceptions.AdinaEzNahikoaException;
 import exceptions.PertsonaAlreadyExists;
 
-public class LoginRegisterBean {
+public class LoginRegisterBean implements Serializable {
 
 	public class Rola implements Serializable {
 		public String izena;
@@ -146,7 +146,7 @@ public class LoginRegisterBean {
 	}
 
 	public String registerEgin() {
-		if (username == null || password == null)
+		if (username == null || password == null || passwordRepeat == null || registerRola == null || birthDate == null)
 			return "false";
 		
 		String rola;
@@ -193,4 +193,32 @@ public class LoginRegisterBean {
 	public boolean saioaHasita() {
 		return pertsona != null;
 	}
+	
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        LoginRegisterBean other = (LoginRegisterBean) obj;
+        if (username == null) {
+            return other.username == null;
+        }
+        else {
+            return username.equals(other.username);
+        }
+    }
 }
