@@ -96,4 +96,6 @@ public interface DataAccessInterface {
 	public LogEntry log(String mezua);
 
 	public List<LogEntry> getLogs();
+
+	public List<Question> getAllQuestions();
 }

@@ -18,7 +18,7 @@ import businessLogic.BLFacade;
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class AuthFilter implements Filter {
 
-	public static final String[] PUBLIC = { "Blokeatuta.xhtml", "BaimenikEz.xhtml", "Login.xhtml", "Register.xhtml", "QueryQuestion.xhtml",
+	public static final String[] PUBLIC = { "ShowAllQuestions.xhtml","Blokeatuta.xhtml", "BaimenikEz.xhtml", "Login.xhtml", "Register.xhtml", "QueryQuestion.xhtml",
 			"Main.xhtml" };
 	public static final String[] SAIOA_HASITA = { "MyAccount.xhtml" };
 	public static final String[] ADMIN = { "Logs.xhtml", "CreateQuestion.xhtml", "Erabiltzaileak.xhtml" };

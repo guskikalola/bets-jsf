@@ -367,4 +367,14 @@ public class HibernateDataAccess implements DataAccessInterface {
 		return logEntries;
 	}
 
+	@Override
+	public List<Question> getAllQuestions() {
+		List<Question> questions = null;
+		session.beginTransaction();
+		Query q = session.createQuery("from Question");
+		questions = q.list();
+		session.getTransaction().commit();
+		return questions;
+	}
+
 }

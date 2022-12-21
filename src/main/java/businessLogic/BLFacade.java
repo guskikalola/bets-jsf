@@ -78,4 +78,7 @@ public interface BLFacade  {
 
 
 	public List<LogEntry> getLogs();
+
+
+	public List<Question> getAllQuestions();
 }

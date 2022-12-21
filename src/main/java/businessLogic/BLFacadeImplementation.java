@@ -218,6 +218,15 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return logEntries;
 	}
+
+	@Override
+	public List<Question> getAllQuestions() {
+		List<Question> questions = null;
+		dbManager.open();
+		questions = dbManager.getAllQuestions();
+		dbManager.close();
+		return questions;
+	}
 	
 	
 

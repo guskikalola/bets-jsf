@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+		</h:head>
+		<h:body>
+			<div>
+				<div
+					class="d-flex flex-column justify-content-center align-items-center">
+					<p>Questions</p>
+					<h:selectOneListbox value="#{azterketa.question}">
+						<f:selectItems value="#{azterketa.questions}"></f:selectItems>
+					</h:selectOneListbox>
+				</div>
+			</div>
+		</h:body>
+	</f:view>
+</ui:composition>
+</html>

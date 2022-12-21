@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16685874298320" configfile="/BetsJSF/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="Main.xhtml" x="24" y="240" id="pf16685889971751" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf16685889971762 pf16685889971763" path="/Main.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="CreateQuestion.xhtml" x="204" y="96" id="pf16685889971764" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16685889971762" path="/CreateQuestion.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="QueryQuestion.xhtml" x="180" y="348" id="pf16685889971765" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16685889971763" path="/QueryQuestion.xhtml"/>
-  <links id="pf16685889971762" target="pf16685889971764" source="pf16685889971751" outcome="createQuestion"/>
-  <links id="pf16685889971763" target="pf16685889971765" source="pf16685889971751" outcome="queryQuestion"/>
+  <nodes xsi:type="pageflow:PFPage" name="ToCreateQuestion" x="338" y="562" id="pf16685889971751" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf16685889971762 pf16685889971763" inlinks="pf16716104788460 pf16716104788461 pf16716104788462" path="/Main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateQuestion.xhtml" x="554" y="370" id="pf16685889971764" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16685889971762" path="/CreateQuestion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryQuestion.xhtml" x="554" y="754" id="pf16685889971765" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16685889971763" path="/QueryQuestion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="122" y="178" id="pf16716104788463" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf16716104788460" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" x="122" y="562" id="pf16716104788474" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf16716104788461" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/facelets/templates/Goiburukoa.xhtml" x="122" y="946" id="pf16716104788475" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf16716104788462" path="/WEB-INF/facelets/templates/Goiburukoa.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Erabiltzaileak.xhtml" x="122" y="1331" id="pf16716104788476" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf16716104788477" inlinks="pf16716104788477" path="/Erabiltzaileak.xhtml"/>
+  <links id="pf16685889971762" target="pf16685889971764" source="pf16685889971751" outcome="createQuestion" redirect="true"/>
+  <links id="pf16685889971763" target="pf16685889971765" source="pf16685889971751" outcome="queryQuestion" redirect="true"/>
+  <links id="pf16716104788460" target="pf16685889971751" source="pf16716104788463" outcome="true" redirect="true"/>
+  <links id="pf16716104788461" target="pf16685889971751" source="pf16716104788474" outcome="true" redirect="true"/>
+  <links id="pf16716104788462" target="pf16685889971751" source="pf16716104788475" outcome="logout"/>
+  <links id="pf16716104788477" target="pf16716104788476" source="pf16716104788476" outcome="true">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
 </pageflow:Pageflow>
